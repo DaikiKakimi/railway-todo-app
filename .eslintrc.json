@@ -1,0 +1,4 @@
+{
+  "extends": "eslint-plugin-prettier",
+  "plugins": ["prettier"]
+}
