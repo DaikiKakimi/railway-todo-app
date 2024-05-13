@@ -21,3 +21,20 @@
   height: 40px;
   border-radius: 5px;
 }
+
+@media (max-width: 768px) {
+  .new-list {
+    width: 90%;
+    padding: 0 20px;
+  }
+
+  .new-list-title {
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .new-list {
+    padding: 0 10px;
+  }
+}

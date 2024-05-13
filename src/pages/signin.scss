@@ -33,3 +33,22 @@
 .error-message {
   color: #ff3333;
 }
+
+@media (max-width: 768px) {
+  .signin {
+    width: 90%;
+    padding: 0 20px;
+  }
+
+  .email-input,
+  .password-input,
+  .signin-button {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .signin {
+    padding: 0 10px;
+  }
+}

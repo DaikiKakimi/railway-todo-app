@@ -13,3 +13,47 @@
   color: #ffffff;
   margin: auto 25px auto auto;
 }
+
+.title {
+  color: #ffffff;
+  align-self: auto;
+  text-align: left;
+  margin-left: 50px;
+  line-height: 70px;
+  color: white;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 60px;
+    padding: 0 15px;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 1.2em;
+    line-height: 60px;
+  }
+}
+
+@media (max-width: 320px) {
+  .header {
+    width: 100%;
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 1em;
+    line-height: normal;
+    margin-bottom: 10px;
+  }
+
+  .sign-out-button {
+    padding: 5px 10px;
+    width: 100%;
+    text-align: center;
+  }
+}

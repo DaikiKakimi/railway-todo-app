@@ -9,7 +9,7 @@
   color: #555555;
 }
 
-.edit-task-title,
+.edit-task-limit .edit-task-title,
 .edit-task-detail {
   width: 300px;
   margin-bottom: 25px;
@@ -34,4 +34,28 @@
 
 .error-message {
   color: #ff3333;
+}
+
+@media (max-width: 768px) {
+  .edit-task {
+    width: 90%;
+    padding: 0 20px;
+  }
+
+  .edit-task-title,
+  .edit-task-detail {
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .edit-task {
+    padding: 0 10px;
+  }
+
+  .delete-task-button,
+  .edit-task-button {
+    width: 100%;
+    margin: 10px 0;
+  }
 }

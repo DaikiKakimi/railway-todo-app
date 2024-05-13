@@ -34,3 +34,31 @@
 .error-message {
   color: #ff3333;
 }
+
+@media (max-width: 768px) {
+  .edit-list {
+    width: 95%;
+    padding: 0 10px;
+  }
+
+  .edit-list-title {
+    width: 100%;
+  }
+
+  .delete-list-button,
+  .edit-list-button {
+    width: 45%;
+    margin: 10px 2%;
+  }
+}
+
+@media (max-width: 480px) {
+  .edit-list {
+    padding: 0 5px;
+  }
+
+  .delete-list-button,
+  .edit-list-button {
+    height: 50px;
+  }
+}

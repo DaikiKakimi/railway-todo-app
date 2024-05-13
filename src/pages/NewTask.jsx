@@ -17,13 +17,20 @@ export const NewTask = () => {
   const history = useHistory();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
-  const handleLimitChange = (e) => setLimit(e.target.value);
+
+  const handleLimitChange = (e) => {
+    const localDate = new Date(e.target.value);
+    console.log(localDate);
+    setLimit(localDate.toISOString().slice(0, -5) + "Z"); // "YYYY-MM-DDTHH:MM:SSZ" 形式にかえる
+  };
+
   const handleSelectList = (id) => setSelectListId(id);
   const onCreateTask = () => {
     const data = {
       title: title,
       detail: detail,
       done: false,
+      limit: limit,
     };
 
     axios
@@ -34,6 +41,7 @@ export const NewTask = () => {
       })
       .then(() => {
         history.push("/");
+        console.log(data);
       })
       .catch((err) => {
         setErrorMessage(`タスクの作成に失敗しました。${err}`);
@@ -65,10 +73,7 @@ export const NewTask = () => {
         <form className="new-task-form">
           <label>リスト</label>
           <br />
-          <select
-            onChange={(e) => handleSelectList(e.target.value)}
-            className="new-task-select-list"
-          >
+          <select onChange={(e) => handleSelectList(e.target.value)} className="new-task-select-list">
             {lists.map((list, key) => (
               <option key={key} className="list-item" value={list.id}>
                 {list.title}
@@ -78,32 +83,23 @@ export const NewTask = () => {
           <br />
           <label>タイトル</label>
           <br />
-          <input
-            type="text"
-            onChange={handleTitleChange}
-            className="new-task-title"
-          />
+          <input type="text" onChange={handleTitleChange} className="new-task-title" />
           <br />
           <label>詳細</label>
           <br />
-          <textarea
-            type="text"
-            onChange={handleDetailChange}
-            className="new-task-detail"
-          />
+          <textarea type="text" onChange={handleDetailChange} className="new-task-detail" />
+
           <br />
           <label>期限</label>
           <br />
-          <textarea
-            type="text"
-            onChange={handleLimitChange}
-            className="new-task-limit"
-          />
+          <input type="datetime-local" onChange={handleLimitChange} className="new-task-limit" />
           <br />
+
           <button
             type="button"
             className="new-task-button"
             onClick={onCreateTask}
+            disabled={!title.trim() || !detail.trim() || !limit.trim()} //すべて入力されるまでボタンの非活性化
           >
             作成
           </button>

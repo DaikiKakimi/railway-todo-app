@@ -12,17 +12,25 @@ export const EditTask = () => {
   const [cookies] = useCookies();
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+  const [limit, setLimit] = useState("");
   const [isDone, setIsDone] = useState();
   const [errorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
+  const handleLimitChange = (e) => {
+    setLimit(e.target.value);
+    console.log(limit);
+  };
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
   const onUpdateTask = () => {
     console.log(isDone);
+    const localDate = new Date(limit);
+
     const data = {
       title: title,
       detail: detail,
       done: isDone,
+      limit: localDate.toISOString().slice(0, -5) + "Z",
     };
 
     axios
@@ -67,6 +75,7 @@ export const EditTask = () => {
         setTitle(task.title);
         setDetail(task.detail);
         setIsDone(task.done);
+        setLimit(convertDateToDateTimeLocal(task.limit));
       })
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
@@ -82,58 +91,41 @@ export const EditTask = () => {
         <form className="edit-task-form">
           <label>タイトル</label>
           <br />
-          <input
-            type="text"
-            onChange={handleTitleChange}
-            className="edit-task-title"
-            value={title}
-          />
+          <input type="text" onChange={handleTitleChange} className="edit-task-title" value={title} />
           <br />
           <label>詳細</label>
           <br />
-          <textarea
-            type="text"
-            onChange={handleDetailChange}
-            className="edit-task-detail"
-            value={detail}
-          />
+          <textarea type="text" onChange={handleDetailChange} className="edit-task-detail" value={detail} />
+          <br />
+          <label>期限</label>
+          <br />
+          <input type="datetime-local" onChange={handleLimitChange} className="edit-task-limit" value={limit} />
+          <br />
           <br />
           <div>
-            <input
-              type="radio"
-              id="todo"
-              name="status"
-              value="todo"
-              onChange={handleIsDoneChange}
-              checked={isDone === false ? "checked" : ""}
-            />
+            <input type="radio" id="todo" name="status" value="todo" onChange={handleIsDoneChange} checked={isDone === false ? "checked" : ""} />
             未完了
-            <input
-              type="radio"
-              id="done"
-              name="status"
-              value="done"
-              onChange={handleIsDoneChange}
-              checked={isDone === true ? "checked" : ""}
-            />
+            <input type="radio" id="done" name="status" value="done" onChange={handleIsDoneChange} checked={isDone === true ? "checked" : ""} />
             完了
           </div>
-          <button
-            type="button"
-            className="delete-task-button"
-            onClick={onDeleteTask}
-          >
+          <button type="button" className="delete-task-button" onClick={onDeleteTask}>
             削除
           </button>
-          <button
-            type="button"
-            className="edit-task-button"
-            onClick={onUpdateTask}
-          >
+          <button type="button" className="edit-task-button" onClick={onUpdateTask}>
             更新
           </button>
         </form>
       </main>
     </div>
   );
+};
+
+const convertDateToDateTimeLocal = (isoDateString) => {
+  if (!isoDateString) return "";
+
+  const date = new Date(isoDateString);
+  const offset = date.getTimezoneOffset() * 60000;
+  const localISOTime = new Date(date.getTime() - offset).toISOString();
+
+  return localISOTime.slice(0, 16);
 };

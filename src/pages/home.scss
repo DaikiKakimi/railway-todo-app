@@ -22,12 +22,13 @@
 .list-tab-item {
   flex-shrink: 0;
   width: 100px;
-  padding: 0 25px;
+  padding: 0;
   text-overflow: normal;
   margin-right: 5px;
   border: solid 1px #242f9b;
   justify-content: center;
   align-items: center;
+  padding: 5px;
 }
 
 .active {
@@ -52,14 +53,33 @@
   padding-left: 25px;
   font-size: large;
   border: solid 1px #ffffff;
+  padding: 0;
 }
 
 .task-item-link {
-  display: block;
+  display: flex;
   width: 100%;
   height: 100%;
   text-decoration: none;
   color: #000000;
+  justify-content: space-between;
+}
+
+.task-title {
+  margin: auto 25px auto;
+}
+
+.task-limit {
+  margin: auto 25px auto 20px;
+}
+
+.task-lastdays {
+  color: #ff3333;
+  margin: auto 25px auto auto;
+}
+
+.task-done {
+  margin: auto 25px auto;
 }
 
 .error-message {
@@ -73,4 +93,47 @@
 
 .display-select {
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .list-tab-item {
+    width: 150px;
+  }
+
+  .taskList,
+  .tasks-header,
+  .list-header {
+    padding: 20px;
+  }
+
+  .display-select-wrapper {
+    width: auto;
+  }
+}
+
+@media (max-width: 320px) {
+  .list-tab {
+    flex-direction: column;
+    width: auto;
+  }
+
+  .task-item {
+    height: auto;
+    font-size: medium;
+    padding-left: 10px;
+  }
+
+  .list-menu,
+  .tasks-header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .display-select-wrapper {
+    margin: 10px auto;
+  }
+
+  .task-item-link {
+    flex-direction: column;
+  }
 }
