@@ -116,7 +116,9 @@ export const Home = () => {
           <div className="tasks">
             <div className="tasks-header">
               <h2>タスク一覧</h2>
-              <Link to="/task/new">タスク新規作成</Link>
+              <p className="tasks-menu">
+                <Link to="/task/new">タスク新規作成</Link>
+              </p>
             </div>
             <div className="display-select-wrapper">
               <select onChange={handleIsDoneDisplayChange} className="display-select">

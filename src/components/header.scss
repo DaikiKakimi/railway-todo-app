@@ -7,20 +7,20 @@
   color: #ffffff;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  box-sizing: border-box;
 }
 
 .sign-out-button {
   color: #ffffff;
-  margin: auto 25px auto auto;
+  margin: 0;
 }
 
 .title {
   color: #ffffff;
-  align-self: auto;
   text-align: left;
-  margin-left: 50px;
-  line-height: 70px;
-  color: white;
+  line-height: 80px;
   text-decoration: none;
 }
 
@@ -28,7 +28,6 @@
   .header {
     height: 60px;
     padding: 0 15px;
-    width: 100%;
   }
 
   .title {
@@ -39,7 +38,6 @@
 
 @media (max-width: 320px) {
   .header {
-    width: 100%;
     flex-direction: column;
     height: auto;
     padding: 10px;

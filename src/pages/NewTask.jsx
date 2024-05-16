@@ -4,7 +4,7 @@ import axios from "axios";
 import { url } from "../const";
 import { Header } from "../components/Header";
 import "./newTask.scss";
-import { useHistory } from "react-router-dom";
+import { useHistory, useNavigate } from "react-router-dom";
 
 export const NewTask = () => {
   const [selectListId, setSelectListId] = useState();
@@ -14,7 +14,7 @@ export const NewTask = () => {
   const [limit, setLimit] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
-  const history = useHistory();
+  const history = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
 
@@ -40,7 +40,7 @@ export const NewTask = () => {
         },
       })
       .then(() => {
-        history.push("/");
+        history("/");
         console.log(data);
       })
       .catch((err) => {
